@@ -1,11 +1,10 @@
 package main
 
 import (
-	"net/http"
+	"fmt"
 	"html/template"
 	"log"
-	"fmt"
-	"strings"
+	"net/http"
 )
 
 var tpl *template.Template
@@ -29,14 +28,6 @@ func (s stringHandler) ServeHTTP(w http.ResponseWriter, req *http.Request){
 	fmt.Println(req.RequestURI)
 	w.Header().Set("Result", string(s))
 	w.Write([]byte(s))
-
-	reader := strings.NewReader("Go语言中文网")
-	p := make([]byte, 20)
-	n, err := reader.ReadAt(p, 2)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("%s, %d\n", p, n)
 }
 
 func init(){
